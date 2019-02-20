@@ -1,1 +1,9 @@
-script: echo "hello world from ${TRAVIS_BRANCH}"
+if: tag IS blank
+
+before_script:
+  - git fetch --tags
+
+script:
+  - echo "hello world from ${TRAVIS_BRANCH}"
+  - git tag --list
+  - git describe
