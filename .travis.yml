@@ -1,5 +1,13 @@
+if: tag IS blank
+
 os:
   - linux
   - windows
 
-script: echo "hello world from ${TRAVIS_BRANCH}"
+before_script:
+  - git fetch --tags
+
+script:
+  - echo "hello world from ${TRAVIS_BRANCH}"
+  - git tag --list
+  - git describe
